@@ -205,9 +205,14 @@ h2{font-family:var(--script);font-weight:400;font-size:52px;line-height:1.2;text
 .date-row .mid{font-family:var(--serif);font-size:62px;line-height:1;color:var(--gold-light)}
 .date-row .mid small{display:block;font-family:var(--caps);font-size:12px;letter-spacing:.3em;color:var(--gold);margin-bottom:4px}
 /* keep "20" on the same centre line as SUNDAY / 2:30 PM — DECEMBER floats above it */
-.date-row{margin-top:40px}
-.date-row .mid{position:relative;margin-top:-.08em}
-.date-row .mid small{position:absolute;left:50%;bottom:100%;transform:translateX(-50%);white-space:nowrap;margin:0 0 6px;padding-left:.3em}
+.date-row{margin-top:46px}
+.date-row + div{margin-top:20px!important}
+.date-row .mid{position:relative}
+.date-row .mid small{position:absolute;left:50%;bottom:100%;transform:translateX(-50%);white-space:nowrap;line-height:1.2;margin:0 0 calc(10px - var(--ov,0px));padding-left:.3em;
+  text-shadow:none!important;-webkit-text-stroke:0;font-weight:400;letter-spacing:.32em}
+/* sides stretch to the measured height of the "20" digits (set by JS as --dh) */
+.date-row{align-items:center}
+.date-row .side{box-sizing:border-box;display:flex;align-items:center;justify-content:center;padding:0 4px;height:var(--dh,auto)}
 .hero .venue{font-style:italic;font-size:18px;margin-top:20px;color:rgba(244,230,194,.85)}
 .hash{font-family:var(--sans);font-weight:300;font-size:13px;letter-spacing:.08em;margin-top:8px;color:var(--gold)}
 .scroll-cue{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;
@@ -435,6 +440,10 @@ section{transform-style:preserve-3d}
 .tl li{transition:transform .4s cubic-bezier(.2,.8,.2,1)}
 .tl li::after{box-shadow:0 0 0 4px rgba(201,162,75,.15),0 4px 8px rgba(90,11,24,.3)}
 .tl .a{background:linear-gradient(165deg,#fff,#FBF6EE);padding:12px 14px;border-radius:12px;box-shadow:var(--depth);border:1px solid rgba(201,162,75,.3)}
+.tl .a{display:flex;align-items:center;gap:12px}
+.tl-ic{flex:0 0 40px;width:40px;height:40px;display:block}
+.tl-ic svg{width:40px;height:40px;display:block}
+.tl-txt{min-width:0}
 
 
 /* ---------- Envelope: deeper shadow & card lift ---------- */
@@ -610,13 +619,14 @@ footer .names-f{filter:drop-shadow(0 1px 0 #7a5a1e) drop-shadow(0 2px 0 #4f380f)
     <p class="eyebrow reveal">ORDER OF THE DAY</p>
     <h2 class="reveal">Wedding Program</h2>
     <div class="orn reveal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="gTl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#B48C3C"/><stop offset=".55" stop-color="#8E1F34"/><stop offset="1" stop-color="#5A0B18"/></linearGradient></defs></svg>
     <ul class="tl">
-      <li class="reveal"><div class="t">3:00<small>PM</small></div><div class="a">Guest Seating<span>&amp; Entourage Procession</span></div></li>
-      <li class="reveal"><div class="t">4:00<small>PM</small></div><div class="a">Wedding Ceremony<span>We say “I do”</span></div></li>
-      <li class="reveal"><div class="t">5:00<small>PM</small></div><div class="a">Cocktails &amp; Photos<span>Mingle and capture memories</span></div></li>
-      <li class="reveal"><div class="t">6:00<small>PM</small></div><div class="a">Reception Program<span>&amp; fun with friends and family</span></div></li>
-      <li class="reveal"><div class="t">7:30<small>PM</small></div><div class="a">Dinner<span>Let’s feast together</span></div></li>
-      <li class="reveal"><div class="t">8:30<small>PM</small></div><div class="a">Same Day Edit<span>Relive the day with us</span></div></li>
+      <li class="reveal"><div class="t">3:00<small>PM</small></div><div class="a"><i class="tl-ic" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="url(#gTl)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 42V22a14 14 0 0128 0v20"/><path d="M14 42V23a10 10 0 0120 0v19"/><path d="M5 42h38"/><circle cx="17" cy="11.5" r="2.2"/><circle cx="24" cy="8" r="2.4"/><circle cx="31" cy="11.5" r="2.2"/><path d="M24 30l-5 12M24 30l5 12" opacity=".55"/></svg></i><div class="tl-txt">Guest Seating<span>&amp; Entourage Procession</span></div></div></li>
+      <li class="reveal"><div class="t">4:00<small>PM</small></div><div class="a"><i class="tl-ic" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="url(#gTl)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="19" cy="29" r="10"/><circle cx="30" cy="29" r="10"/><path d="M14 15l3-4h4l3 4-5 4z"/><path d="M17 11l2 8 2-8" opacity=".6"/></svg></i><div class="tl-txt">Wedding Ceremony<span>We say “I do”</span></div></div></li>
+      <li class="reveal"><div class="t">5:00<small>PM</small></div><div class="a"><i class="tl-ic" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="url(#gTl)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><g transform="rotate(-14 17 22)"><path d="M12 7h9l-1.2 12a3.3 3.3 0 01-6.6 0z"/><path d="M16.5 22.5V37M12.5 37h8"/><path d="M12.6 12h7.8" opacity=".55"/></g><g transform="rotate(14 31 22)"><path d="M27 7h9l-1.2 12a3.3 3.3 0 01-6.6 0z"/><path d="M31.5 22.5V37M27.5 37h8"/><path d="M27.6 12h7.8" opacity=".55"/></g><path d="M24 3v4M22 5h4"/></svg></i><div class="tl-txt">Cocktails &amp; Photos<span>Mingle and capture memories</span></div></div></li>
+      <li class="reveal"><div class="t">6:00<small>PM</small></div><div class="a"><i class="tl-ic" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="url(#gTl)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="18" y="5" width="12" height="20" rx="6"/><path d="M18 13h12M18 18h12" opacity=".55"/><path d="M12 21a12 12 0 0024 0"/><path d="M24 33v8M17 41h14"/></svg></i><div class="tl-txt">Reception Program<span>&amp; fun with friends and family</span></div></div></li>
+      <li class="reveal"><div class="t">7:30<small>PM</small></div><div class="a"><i class="tl-ic" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="url(#gTl)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 34a16 16 0 0132 0z"/><path d="M4 34h40"/><path d="M24 18v-2.5"/><circle cx="24" cy="13.5" r="2"/><path d="M14 30a10 10 0 016-7" opacity=".55"/><path d="M9 40h30"/></svg></i><div class="tl-txt">Dinner<span>Let’s feast together</span></div></div></li>
+      <li class="reveal"><div class="t">8:30<small>PM</small></div><div class="a"><i class="tl-ic" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="url(#gTl)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="9" width="38" height="25" rx="3"/><path d="M20.5 16v11l9.5-5.5z"/><path d="M24 34v5M16 41h16"/><path d="M9 13h2M9 30h2M37 13h2M37 30h2" opacity=".55"/></svg></i><div class="tl-txt">Same Day Edit<span>Relive the day with us</span></div></div></li>
     </ul>
   </div>
 </section>
@@ -994,6 +1004,29 @@ footer .names-f{filter:drop-shadow(0 1px 0 #7a5a1e) drop-shadow(0 2px 0 #4f380f)
   }
   intro.addEventListener('click',openEnvelope);
   intro.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();openEnvelope();} });
+
+
+  /* ---- Fit "20" exactly between the top and bottom borders of SUNDAY / 2:30 PM ---- */
+  (function(){
+    var row=document.querySelector('.date-row'), mid=row&&row.querySelector('.mid');
+    if(!row||!mid) return;
+    var cv=document.createElement('canvas').getContext('2d');
+    function fit(){
+      var cs=getComputedStyle(mid), num=mid.lastChild.textContent.trim()||'20';
+      cv.font=cs.fontStyle+' '+cs.fontWeight+' '+cs.fontSize+' '+cs.fontFamily;
+      var m=cv.measureText(num);
+      if(!m.actualBoundingBoxAscent||!m.fontBoundingBoxAscent) return;
+      var A=m.fontBoundingBoxAscent, D=m.fontBoundingBoxDescent, a=m.actualBoundingBoxAscent, d=Math.max(0,m.actualBoundingBoxDescent);
+      mid.style.lineHeight=(A+D)+'px';
+      mid.style.marginTop=-(A-a)+'px';
+      mid.style.marginBottom=-(D-d)+'px';
+      row.style.setProperty('--dh',(a+d)+'px');
+      row.style.setProperty('--ov',(A-a)+'px');
+    }
+    fit();
+    if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fit);
+    window.addEventListener('resize',fit);
+  })();
 
   /* ---------- Menu ---------- */
   var menu=document.getElementById('menu');
