@@ -205,7 +205,7 @@ h2{font-family:var(--script);font-weight:400;font-size:52px;line-height:1.2;text
 .date-row .side{font-size:12px;letter-spacing:.3em;border-top:1px solid rgba(201,162,75,.6);border-bottom:1px solid rgba(201,162,75,.6);padding:6px 4px;width:92px}
 .date-row .mid{font-family:var(--serif);font-size:62px;line-height:1;color:var(--gold-light)}
 .date-row .mid small{display:block;font-family:var(--caps);font-size:12px;letter-spacing:.3em;color:var(--gold);margin-bottom:4px}
-/* keep "20" on the same centre line as SUNDAY / 2:30 PM — DECEMBER floats above it */
+/* keep "20" on the same centre line as SUNDAY / 3:00 PM — DECEMBER floats above it */
 .date-row{margin-top:46px}
 .date-row + div{margin-top:20px!important}
 .date-row .mid{position:relative}
@@ -394,6 +394,13 @@ body.lb-open{overflow:hidden}
 .music .eq i:nth-child(2){animation-delay:-.35s}.music .eq i:nth-child(3){animation-delay:-.7s}
 @keyframes eq{0%,100%{height:6px}50%{height:18px}}
 @media (prefers-reduced-motion:reduce){.music .eq i,.music::after{animation:none}}
+.music-tip{position:fixed;right:76px;bottom:calc(25px + env(safe-area-inset-bottom));z-index:41;max-width:min(230px,calc(100vw - 100px));
+  padding:9px 14px;border-radius:12px;background:linear-gradient(160deg,#FBF6EE,#F1E4CC);color:var(--wine-600);
+  font-family:var(--serif);font-style:italic;font-size:15px;line-height:1.3;box-shadow:0 10px 24px rgba(0,0,0,.3),0 0 0 1px rgba(201,162,75,.6);
+  opacity:0;visibility:hidden;transform:translateX(8px) scale(.96);transform-origin:right center;transition:opacity .35s ease,transform .35s ease,visibility .35s;pointer-events:none}
+.music-tip::after{content:"";position:absolute;right:-6px;top:50%;width:12px;height:12px;margin-top:-6px;background:#F3E7D1;transform:rotate(45deg);
+  box-shadow:1px -1px 0 rgba(201,162,75,.6)}
+.music-tip.show{opacity:1;visibility:visible;transform:none}
 
 /* ============ LARGER SCREENS ============ */
 @media (min-width:720px){
@@ -610,7 +617,7 @@ footer .names-f{filter:drop-shadow(0 1px 0 #7a5a1e) drop-shadow(0 2px 0 #4f380f)
   <div class="date-row reveal">
     <div class="side">SUNDAY</div>
     <div class="mid"><small>DECEMBER</small>20</div>
-    <div class="side">2:30 PM</div>
+    <div class="side">3:00 PM</div>
   </div>
   <div class="reveal" style="font-family:var(--caps);letter-spacing:.4em;font-size:13px;margin-top:14px;color:var(--gold)">2026</div>
   <p class="venue reveal">Viridis Countryside Garden · Amadeo, Cavite</p>
@@ -631,12 +638,6 @@ footer .names-f{filter:drop-shadow(0 1px 0 #7a5a1e) drop-shadow(0 2px 0 #4f380f)
       <div><b id="cd-s">00</b><span>SECS</span></div>
     </div>
     <p class="verse reveal">“So they are no longer two, but one flesh. Therefore what God has joined together, let no one separate.”<cite>MATTHEW 19:6</cite></p>
-    <div class="center reveal">
-      <a class="btn btn-wine" id="calBtn" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
-        ADD TO CALENDAR
-      </a>
-    </div>
   </div>
 </section>
 
@@ -723,10 +724,10 @@ footer .names-f{filter:drop-shadow(0 1px 0 #7a5a1e) drop-shadow(0 2px 0 #4f380f)
 
     <p class="eyebrow reveal" style="margin-bottom:22px">SECONDARY SPONSORS</p>
     <div class="ent-cols">
-      <div class="ent-group reveal"><h3><span class="emb" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="url(#gGoldE)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M32 6c4 5 5 8 5 11a5 5 0 01-10 0c0-3 1-6 5-11z"/><path d="M32 22v3"/><rect x="25" y="25" width="14" height="25" rx="2"/><path d="M25 31c3 2 4-1 7 1"/><path d="M18 50h28l-3 6H21z"/></svg></span>CANDLE</h3><p>Rowena Base<br>Kyle Garcia</p><small style="font-style:italic;opacity:.7;font-size:14px">to light our path</small></div>
+      <div class="ent-group reveal"><h3><span class="emb" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="url(#gGoldE)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M32 32c-5-7-10-11-15-11a11 11 0 000 22c5 0 10-4 15-11s10-11 15-11a11 11 0 010 22c-5 0-10-4-15-11z"/><path d="M9 46l-3 8M55 46l3 8" opacity=".7"/><circle cx="6" cy="56" r="1.5"/><circle cx="58" cy="56" r="1.5"/></svg></span>CORD</h3><p>Sharlene Manjeron<br>Niño Gonzaga</p><small style="font-style:italic;opacity:.7;font-size:14px">to bind us together</small></div>
       <div class="ent-group reveal"><h3><span class="emb" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="url(#gGoldE)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 14l3-6 3 5 4-7 4 7 3-5 3 6"/><path d="M20 14h24"/><path d="M20 14C14 26 12 42 10 56h44c-2-14-4-30-10-42"/><path d="M24 22c-2 10-3 22-4 34M40 22c2 10 3 22 4 34M32 18v38" opacity=".55"/></svg></span>VEIL</h3><p>Michelle Boco<br>Michael Capili</p><small style="font-style:italic;opacity:.7;font-size:14px">to clothe us as one</small></div>
     </div>
-    <div class="ent-group reveal"><h3><span class="emb" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="url(#gGoldE)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M32 32c-5-7-10-11-15-11a11 11 0 000 22c5 0 10-4 15-11s10-11 15-11a11 11 0 010 22c-5 0-10-4-15-11z"/><path d="M9 46l-3 8M55 46l3 8" opacity=".7"/><circle cx="6" cy="56" r="1.5"/><circle cx="58" cy="56" r="1.5"/></svg></span>CORD</h3><p>Sharlene Manjeron<br>Niño Gonzaga</p><small style="font-style:italic;opacity:.7;font-size:14px">to bind us together</small></div>
+    <div class="ent-group reveal"><h3><span class="emb" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" stroke="url(#gGoldE)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M32 6c4 5 5 8 5 11a5 5 0 01-10 0c0-3 1-6 5-11z"/><path d="M32 22v3"/><rect x="25" y="25" width="14" height="25" rx="2"/><path d="M25 31c3 2 4-1 7 1"/><path d="M18 50h28l-3 6H21z"/></svg></span>CANDLE</h3><p>Rowena Base<br>Kyle Garcia</p><small style="font-style:italic;opacity:.7;font-size:14px">to light our path</small></div>
 
     <div class="divider"></div>
 
@@ -986,6 +987,7 @@ footer .names-f{filter:drop-shadow(0 1px 0 #7a5a1e) drop-shadow(0 2px 0 #4f380f)
 
 <!-- Music -->
 <div id="ytWrap" aria-hidden="true"><div id="ytPlayer"></div></div>
+<div class="music-tip" id="musicTip" role="status" aria-live="polite"></div>
 <button class="music" id="musicBtn" type="button" aria-label="Play music" aria-pressed="false">
   <span class="disc"><svg class="i-note" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg>
   <svg class="i-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="5" width="3.5" height="14" rx="1"/><rect x="13.5" y="5" width="3.5" height="14" rx="1"/></svg></span>
@@ -1001,7 +1003,7 @@ footer .names-f{filter:drop-shadow(0 1px 0 #7a5a1e) drop-shadow(0 2px 0 #4f380f)
 <script>
 (function(){
   /* ---------- CONFIG ---------- */
-  var WEDDING = new Date('2026-12-20T14:30:00+08:00');
+  var WEDDING = new Date('2026-12-20T15:00:00+08:00');
   var DRIVE_LINK = 'https://drive.google.com/drive/folders/1JatPaDxsLJ-V2ujoW0dY5ddPjrPDaa0_?usp=sharing'; // shared Google Drive folder
 
   /* ---------- Envelope ---------- */
@@ -1106,7 +1108,7 @@ footer .names-f{filter:drop-shadow(0 1px 0 #7a5a1e) drop-shadow(0 2px 0 #4f380f)
   intro.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();openEnvelope();} });
 
 
-  /* ---- Fit "20" exactly between the top and bottom borders of SUNDAY / 2:30 PM ---- */
+  /* ---- Fit "20" exactly between the top and bottom borders of SUNDAY / 3:00 PM ---- */
   (function(){
     var row=document.querySelector('.date-row'), mid=row&&row.querySelector('.mid');
     if(!row||!mid) return;
@@ -1144,8 +1146,11 @@ footer .names-f{filter:drop-shadow(0 1px 0 #7a5a1e) drop-shadow(0 2px 0 #4f380f)
         host:'https://www.youtube-nocookie.com',
         playerVars:{autoplay:0,controls:0,disablekb:1,fs:0,loop:1,playlist:MUSIC_ID,playsinline:1,rel:0,iv_load_policy:3},
         events:{
-          onReady:function(){ ready=true; try{player.setVolume(100);}catch(e){} if(want) play(); },
-          onStateChange:function(e){ playing=(e.data===1||e.data===3&&want); if(e.data===0&&want){try{player.seekTo(0);player.playVideo();}catch(err){}} ui(); },
+          onReady:function(){ ready=true; try{player.setVolume(100);}catch(e){} if(want) play();
+            // loop seamlessly: jump back to the start just before the song ends
+            setInterval(function(){ try{ if(!want) return; var d=player.getDuration(), t=player.getCurrentTime(); if(d>0 && d-t<0.8){ player.seekTo(0,true); player.playVideo(); } }catch(e){} },400);
+          },
+          onStateChange:function(e){ if(e.data===0){ try{player.seekTo(0,true);player.playVideo();}catch(err){} return; } playing=(e.data===1||e.data===3&&want); ui(); },
           onError:function(){ failed=true; btn.style.display='none'; }
         }});
     };
@@ -1157,7 +1162,17 @@ footer .names-f{filter:drop-shadow(0 1px 0 #7a5a1e) drop-shadow(0 2px 0 #4f380f)
       if(document.hidden){ resumeOnShow=playing; if(playing&&player){try{player.pauseVideo();}catch(e){}} }
       else if(resumeOnShow){ play(); }
     });
-    return {play:play, show:function(){ if(!failed) btn.classList.add('show'); }};
+    /* friendly pop-up hints beside the music button, shown at random */
+    var tip=document.getElementById('musicTip'), TIPS=['Turn volume up to listen to our music','Tap to Pause and Play'], lastTip=-1, tipTimer=null;
+    function showTip(){
+      if(failed||!btn.classList.contains('show')||document.body.classList.contains('lb-open')||document.hidden){ return schedule(); }
+      var i; do{ i=Math.floor(Math.random()*TIPS.length); }while(TIPS.length>1&&i===lastTip); lastTip=i;
+      tip.textContent=TIPS[i]; tip.classList.add('show');
+      setTimeout(function(){ tip.classList.remove('show'); schedule(); },4500);
+    }
+    function schedule(){ clearTimeout(tipTimer); tipTimer=setTimeout(showTip, 12000+Math.random()*13000); }
+    btn.addEventListener('click',function(){ tip.classList.remove('show'); });
+    return {play:play, show:function(){ if(failed) return; btn.classList.add('show'); clearTimeout(tipTimer); tipTimer=setTimeout(showTip,1500); }};
   })();
   // start the music in the same tap that opens the envelope (browsers only allow sound after a tap)
   intro.addEventListener('click',function(){ Music.play(); setTimeout(Music.show,1200); });
@@ -1251,13 +1266,6 @@ footer .names-f{filter:drop-shadow(0 1px 0 #7a5a1e) drop-shadow(0 2px 0 #4f380f)
   }
   tick();
 
-  /* ---------- Calendar ---------- */
-  var cal='https://calendar.google.com/calendar/render?action=TEMPLATE'
-    +'&text='+encodeURIComponent('Wedding of Nesler & Anne')
-    +'&dates=20261220T063000Z/20261220T150000Z'
-    +'&details='+encodeURIComponent('#LifetimeANNEventurewithNESLER\nGuest seating starts at 3:00 PM.')
-    +'&location='+encodeURIComponent('Viridis Countryside Garden, Amadeo, Cavite');
-  document.getElementById('calBtn').href=cal;
 
   /* ---------- Drive link ---------- */
   var drive=document.getElementById('driveBtn');
