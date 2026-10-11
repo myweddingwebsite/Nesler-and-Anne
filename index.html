@@ -98,8 +98,9 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .foil small{display:block;font-family:var(--serif);font-style:italic;font-size:13px;letter-spacing:.06em;padding:0;margin-bottom:3px}
 .env-flap{position:absolute;left:0;right:0;top:0;height:62%;z-index:4;transform-origin:top center;transform-style:preserve-3d;
   }
-.flap-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
-.flap-in{transform:rotateX(180deg);clip-path:polygon(0 0,100% 0,54% 95%,50% 100%,46% 95%)}
+.flap-face{position:absolute;inset:0}
+.flap-in{opacity:0;-webkit-clip-path:polygon(0 0,100% 0,54% 95%,50% 100%,46% 95%);clip-path:polygon(0 0,100% 0,54% 95%,50% 100%,46% 95%)}
+#intro.open .env svg rect[filter]{display:none}
 .seal{position:absolute;left:50%;top:60%;z-index:6;width:84px;height:84px;transform:translate(-50%,-50%) rotate(-8deg);
   display:grid;place-items:center;filter:drop-shadow(0 5px 7px rgba(0,0,0,.45));
   will-change:transform,opacity;transition:transform .7s cubic-bezier(.34,1.3,.5,1), opacity .5s ease .15s}
@@ -259,6 +260,11 @@ h2{font-family:var(--script);font-weight:400;font-size:52px;line-height:1.2;text
 .ent-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
 .ent-cols .ent-group p{font-size:17px;overflow-wrap:anywhere}
 .ent-cols .ent-group h3{font-size:11px;letter-spacing:.24em}
+#entourage{padding-left:10px;padding-right:10px}
+.ent-cols{gap:8px}
+.ent-cols .ent-group h3{white-space:nowrap;font-size:clamp(9px,2.8vw,11px);letter-spacing:.14em;gap:6px}
+.ent-cols .ent-group h3 .emb,.ent-cols .ent-group h3 .emb svg{width:18px;height:18px}
+.ent-cols .ent-group p{font-size:16px}
 .ent-cols .ent-group h3::before,.ent-cols .ent-group h3::after{display:none}
 .ent-cols .ent-group{margin-bottom:28px}
 .pair{margin-bottom:10px}
@@ -370,21 +376,16 @@ h2{background-image:linear-gradient(105deg,transparent 0%,transparent 40%,rgba(2
 .reveal.in{transform:none}
 
 /* ---------- HERO: layered 3D stage ---------- */
-.hero{perspective:1300px;perspective-origin:50% 40%;isolation:isolate}
+.hero{isolation:isolate}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:radial-gradient(ellipse 70% 45% at 50% 108%,rgba(201,162,75,.22),transparent 70%)}
-.hero-stage{position:relative;z-index:2;transform-style:preserve-3d;
-  }
-.hero-stage > *{transform-style:preserve-3d}
-.hero-stage .pre{transform:translateZ(40px)}
-.hero-stage .names{transform:translateZ(110px)}
-.hero-stage .date-row{transform:translateZ(70px)}
-.hero-stage .venue{transform:translateZ(30px)}
-.hero-stage .reveal.in.pre{transform:translateZ(40px)}
-.hero-stage .reveal.in.names{transform:translateZ(110px)}
-.hero-stage .reveal.in.date-row{transform:translateZ(70px)}
-.hero-stage .reveal.in.venue{transform:translateZ(30px)}
-.names{filter:drop-shadow(0 1px 0 #7a5a1e) drop-shadow(0 2px 0 #5e4313) drop-shadow(0 3px 0 #43300c) drop-shadow(0 18px 22px rgba(0,0,0,.55))}
+.hero-stage{position:relative;z-index:2}
+.names{filter:none}
+/* soft depth lives on a wrapper, so the gold gradient text itself is never re-filtered (iOS renders that blurry/doubled) */
+.names-depth{filter:drop-shadow(0 8px 14px rgba(0,0,0,.45))}
+.names{padding:.18em .5em .28em;margin-left:-.2em;margin-right:-.2em;-webkit-font-smoothing:antialiased;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.hero .reveal.names{transform:none}
+.hero .reveal:not(.in).names{transform:translateY(24px)}
 .date-row .mid{text-shadow:0 1px 0 #9c7a2e,0 2px 0 #7a5a1e,0 3px 0 #5e4313,0 12px 18px rgba(0,0,0,.5)}
 .date-row .side{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(0,0,0,.12));
   box-shadow:0 10px 20px -12px rgba(0,0,0,.6)}
@@ -553,11 +554,11 @@ footer .names-f{filter:drop-shadow(0 1px 0 #7a5a1e) drop-shadow(0 2px 0 #4f380f)
   <div class="hero-frame"></div>
   <div class="hero-stage">
   <div class="pre reveal">WE ARE GETTING MARRIED</div>
-  <h1 class="names shine reveal">
+  <div class="names-depth"><h1 class="names shine reveal">
     <span class="n">Nesler</span>
     <span class="amp">&amp;</span>
     <span class="n">Anne</span>
-  </h1>
+  </h1></div>
   <div class="date-row reveal">
     <div class="side">SUNDAY</div>
     <div class="mid"><small>DECEMBER</small>20</div>
@@ -910,7 +911,7 @@ footer .names-f{filter:drop-shadow(0 1px 0 #7a5a1e) drop-shadow(0 2px 0 #4f380f)
 (function(){
   /* ---------- CONFIG ---------- */
   var WEDDING = new Date('2026-12-20T14:30:00+08:00');
-  var DRIVE_LINK = ''; // paste the shared Google Drive folder link here
+  var DRIVE_LINK = 'https://drive.google.com/drive/folders/1JatPaDxsLJ-V2ujoW0dY5ddPjrPDaa0_?usp=sharing'; // shared Google Drive folder
 
   /* ---------- Envelope ---------- */
   var intro = document.getElementById('intro');
@@ -934,7 +935,7 @@ footer .names-f{filter:drop-shadow(0 1px 0 #7a5a1e) drop-shadow(0 2px 0 #4f380f)
       hero.classList.remove('morph');
       hero.getAnimations().forEach(function(a){a.cancel()});
       stage.getAnimations().forEach(function(a){a.cancel()});
-      hero.style.clipPath=''; stage.style.transform='';
+      hero.style.transition=''; hero.style.webkitTransition=''; hero.style.clipPath=''; hero.style.webkitClipPath=''; stage.style.transform='';
       if(topbar && topbar.animate) topbar.animate([{opacity:0},{opacity:1}],{duration:700,easing:'ease'});
       revealVisible();
     }
@@ -945,6 +946,7 @@ footer .names-f{filter:drop-shadow(0 1px 0 #7a5a1e) drop-shadow(0 2px 0 #4f380f)
       setTimeout(finish,1000); return;
     }
     var q=function(c){return intro.querySelector(c)};
+    var fOut=q('.flap-out'), fIn=q('.flap-in');
     var seal=q('.seal'), flap=q('.env-flap'), card=q('.card'), back=q('.env-back'), front=q('.env-front'), shadow=q('.env-shadow'), glow=q('.env-glow');
     var SMOOTH='cubic-bezier(.65,0,.35,1)', GLIDE='cubic-bezier(.45,0,.15,1)', OUT='cubic-bezier(.22,1,.36,1)', SINK='cubic-bezier(.5,0,.75,0)';
     function later(ms,fn){return setTimeout(fn,ms)}
@@ -953,8 +955,14 @@ footer .names-f{filter:drop-shadow(0 1px 0 #7a5a1e) drop-shadow(0 2px 0 #4f380f)
     seal.animate([{opacity:1,transform:'translate(-50%,-50%) rotate(-8deg) scale(1)'},
                   {opacity:0,transform:'translate(-50%,-64%) rotate(-8deg) scale(1.16)'}],{duration:650,easing:OUT,fill:'forwards'});
     /* 2 — flap opens (drops behind the card exactly when edge-on) */
-    flap.animate([{transform:'rotateX(0deg)'},{transform:'rotateX(180deg)'}],{duration:1000,delay:300,easing:SMOOTH,fill:'forwards'});
-    later(800,function(){flap.style.zIndex=1});
+    function swing(open,delay,dur){
+      var t={duration:dur,delay:delay,easing:SMOOTH,fill:'forwards'};
+      flap.animate([{transform:open?'scaleY(1)':'scaleY(-1)'},{transform:open?'scaleY(-1)':'scaleY(1)'}],t);
+      var show=[{opacity:1},{opacity:1,offset:.5},{opacity:0,offset:.5},{opacity:0}], hide=[{opacity:0},{opacity:0,offset:.5},{opacity:1,offset:.5},{opacity:1}];
+      fOut.animate(open?show:hide,t); fIn.animate(open?hide:show,t);
+      later(delay+dur/2,function(){flap.style.zIndex=open?1:4});
+    }
+    swing(true,300,1000);
     /* 3 — card slides fully out of the pocket */
     var cardH=card.offsetHeight, outY=-(cardH*1.14);
     var rise=card.animate([{transform:'translate3d(0,0,0)'},{transform:'translate3d(0,'+outY+'px,0)'}],{duration:1150,delay:1150,easing:GLIDE,fill:'forwards'});
@@ -962,14 +970,12 @@ footer .names-f{filter:drop-shadow(0 1px 0 #7a5a1e) drop-shadow(0 2px 0 #4f380f)
       card.style.zIndex=8;
       /* 4 — envelope closes behind the card and drops away */
       later(80,function(){
-        flap.animate([{transform:'rotateX(180deg)'},{transform:'rotateX(0deg)'}],{duration:850,easing:SMOOTH,fill:'forwards'});
-        later(425,function(){flap.style.zIndex=4});
+        swing(false,0,850);
       });
       var sink=[{opacity:1,transform:'translate3d(0,0,0) scale(1)'},{opacity:0,transform:'translate3d(0,120px,0) scale(.94)'}];
       [back,front,flap].forEach(function(el){
         el.animate(el===flap?[{opacity:1},{opacity:0}]:sink,{duration:900,delay:950,easing:SINK,fill:'forwards'});
       });
-      try{ flap.animate([{transform:'translate3d(0,0,0)'},{transform:'translate3d(0,120px,0)'}],{duration:900,delay:950,easing:SINK,fill:'forwards',composite:'add'}); }catch(e){}
       [shadow,glow].forEach(function(el){el.animate([{opacity:1},{opacity:0}],{duration:700,delay:900,fill:'forwards'})});
       /* 5 — card glides to centre screen */
       var r=card.getBoundingClientRect(), vw=window.innerWidth, vh=window.innerHeight;
@@ -991,14 +997,17 @@ footer .names-f{filter:drop-shadow(0 1px 0 #7a5a1e) drop-shadow(0 2px 0 #4f380f)
       var s=Math.min((r.height*0.8)/sr.height,(r.width*0.86)/sr.width);
       var dx=(r.left+r.width/2)-(sr.left+sr.width/2), dy=(r.top+r.height/2)-(sr.top+sr.height/2);
       var mini='translate('+dx+'px,'+dy+'px) scale('+s+')';
-      hero.style.clipPath=from; stage.style.transform=mini;
+      hero.style.webkitClipPath=from; hero.style.clipPath=from; stage.style.transform=mini;
       hero.animate([{opacity:0},{opacity:1}],{duration:420,easing:'ease'});
       card.animate([{opacity:1},{opacity:0}],{duration:420,delay:200,fill:'forwards'});
       var D=1300, E='cubic-bezier(.76,0,.24,1)';
       later(500,function(){
-        hero.animate([{clipPath:from},{clipPath:to}],{duration:D,easing:E,fill:'forwards'});
-        var g=stage.animate([{transform:mini},{transform:'translate(0px,0px) scale(1)'}],{duration:D,easing:E,fill:'forwards'});
-        g.onfinish=finish;
+        var tr='clip-path '+D+'ms '+E+', -webkit-clip-path '+D+'ms '+E;
+        hero.style.webkitTransition=tr; hero.style.transition=tr;
+        void hero.offsetWidth;
+        requestAnimationFrame(function(){ hero.style.webkitClipPath=to; hero.style.clipPath=to; });
+        stage.animate([{transform:mini},{transform:'translate(0px,0px) scale(1)'}],{duration:D,easing:E,fill:'forwards'});
+        later(D+80,finish);
       });
     }
   }
@@ -1085,7 +1094,24 @@ footer .names-f{filter:drop-shadow(0 1px 0 #7a5a1e) drop-shadow(0 2px 0 #4f380f)
 
   /* ---------- Drive link ---------- */
   var drive=document.getElementById('driveBtn');
-  if(DRIVE_LINK){ drive.href=DRIVE_LINK; }
+  if(DRIVE_LINK){
+    /* open in the Google Drive app when it is installed, otherwise fall back to Drive in the browser */
+    var ua=navigator.userAgent||'';
+    var isAndroid=/Android/i.test(ua);
+    var isIOS=/iPad|iPhone|iPod/.test(ua) || (navigator.platform==='MacIntel' && navigator.maxTouchPoints>1);
+    if(isAndroid){
+      // Android intent: launches the Drive app directly, falls back to the web link if the app isn't installed
+      drive.href='intent://'+DRIVE_LINK.replace(/^https?:\/\//,'')
+        +'#Intent;scheme=https;package=com.google.android.apps.docs;S.browser_fallback_url='+encodeURIComponent(DRIVE_LINK)+';end';
+      drive.removeAttribute('target');
+    } else if(isIOS){
+      // iOS: a plain same-tab tap on a drive.google.com link is a Universal Link, so iOS hands it to the Drive app
+      drive.href=DRIVE_LINK;
+      drive.removeAttribute('target');
+    } else {
+      drive.href=DRIVE_LINK; // desktop: new tab
+    }
+  }
   else { drive.removeAttribute('target'); drive.addEventListener('click',function(e){e.preventDefault();toast('Photo album link coming soon!');}); }
 
   /* ---------- Save QR (mobile friendly) ---------- */
