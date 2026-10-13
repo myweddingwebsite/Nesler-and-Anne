@@ -486,12 +486,15 @@ footer .credit a{text-decoration:none;color:var(--gold-light)}
 
 /* ============ GALLERY ============ */
 .wrap.wide{max-width:900px}
-.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:6px}
-@media (min-width:720px){.gallery{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}}
-.g-item{display:block;width:100%;padding:0;margin:0;border:0;background:#2a040b;border-radius:10px;overflow:hidden;cursor:zoom-in;
-  position:relative;
-  box-shadow:0 0 0 1px rgba(201,162,75,.35),0 14px 24px -14px rgba(0,0,0,.8);-webkit-tap-highlight-color:transparent;aspect-ratio:4/5;-webkit-appearance:none;appearance:none}
-.g-item img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 30%;transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .5s ease}
+.gallery{column-count:2;column-gap:10px;margin-top:6px}
+@media (min-width:720px){.gallery{column-count:3;column-gap:14px}}
+.g-item{display:block;width:100%;padding:0;margin:0 0 10px;border:0;background:#2a040b;border-radius:10px;overflow:hidden;cursor:zoom-in;
+  break-inside:avoid;-webkit-column-break-inside:avoid;position:relative;
+  box-shadow:0 0 0 1px rgba(201,162,75,.35),0 14px 24px -14px rgba(0,0,0,.8);-webkit-tap-highlight-color:transparent}
+.g-item img{display:block;width:100%;height:auto;min-height:120px;object-fit:cover;transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .5s ease}
+/* iOS Safari: keep masonry tiles from splitting/misaligning across columns */
+.g-item{display:inline-block;vertical-align:top;page-break-inside:avoid;-webkit-column-break-inside:avoid;break-inside:avoid-column}
+.gallery .g-item.reveal{transform:none!important;transition:opacity .9s ease}
 .g-item::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(232,207,143,.18);pointer-events:none}
 @media (hover:hover){.g-item:hover img{transform:scale(1.04)}}
 .g-item:focus-visible{outline:2px solid var(--gold-light);outline-offset:2px}
