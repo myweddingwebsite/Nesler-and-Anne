@@ -534,8 +534,6 @@ footer .credit a{text-decoration:none;color:var(--gold-light)}
 body.lb-open{overflow:hidden}
 
 /* ============ MUSIC CONTROL (replaces back-to-top) ============ */
-#ytWrap{position:fixed;left:0;bottom:0;width:2px;height:2px;opacity:.01;pointer-events:none;overflow:hidden;z-index:-1}
-#ytWrap iframe{width:2px;height:2px}
 .music{position:fixed;right:16px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:40;width:50px;height:50px;border-radius:50%;padding:0;
   background:radial-gradient(circle at 35% 30%,#7A1428,#4E0A15 75%);border:1px solid var(--gold);color:var(--gold-light);
   display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,241,201,.15);
@@ -1253,7 +1251,6 @@ footer .names-f{filter:drop-shadow(0 1px 0 #7a5a1e) drop-shadow(0 2px 0 #4f380f)
 </div>
 
 <!-- Music -->
-<div id="ytWrap" aria-hidden="true"><div id="ytPlayer"></div></div>
 <div class="music-tip" id="musicTip" role="status" aria-live="polite"></div>
 <button class="music" id="musicBtn" type="button" aria-label="Play music" aria-pressed="false">
   <span class="disc"><svg class="i-note" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg>
@@ -1399,35 +1396,24 @@ footer .names-f{filter:drop-shadow(0 1px 0 #7a5a1e) drop-shadow(0 2px 0 #4f380f)
   })();
 
 
-  /* ---------- Background music (YouTube, hidden player) ---------- */
-  var MUSIC_ID='TPjGEoO_6YI';
+  /* ---------- Background music (MP3, looping) ---------- */
+  var MUSIC_SRC='https://ik.imagekit.io/ainmsoyhi/Nesler%20and%20Anne/The%20Night%20We%20Met%20-%20Joni%20Fuller.mp3';
   var Music=(function(){
-    var btn=document.getElementById('musicBtn'), player=null, ready=false, want=false, playing=false, failed=false, resumeOnShow=false;
+    var btn=document.getElementById('musicBtn'), want=false, playing=false, failed=false, resumeOnShow=false;
+    var audio=new Audio(); audio.src=MUSIC_SRC; audio.loop=true; audio.preload='auto'; audio.volume=1; audio.setAttribute('playsinline','');
     function ui(){ btn.classList.toggle('playing',playing); btn.setAttribute('aria-pressed',playing?'true':'false'); btn.setAttribute('aria-label',playing?'Pause music':'Play music'); }
     function play(){
       want=true;
-      if(ready&&player){ try{ player.unMute(); player.setVolume(100); player.playVideo(); }catch(e){} }
+      try{ var p=audio.play(); if(p&&p.catch) p.catch(function(){ want=false; playing=false; ui(); }); }catch(e){}
     }
-    function pause(){ want=false; if(ready&&player){ try{player.pauseVideo();}catch(e){} } playing=false; ui(); }
-    window.onYouTubeIframeAPIReady=function(){
-      player=new YT.Player('ytPlayer',{width:2,height:2,videoId:MUSIC_ID,
-        host:'https://www.youtube-nocookie.com',
-        playerVars:{autoplay:0,controls:0,disablekb:1,fs:0,loop:1,playlist:MUSIC_ID,playsinline:1,rel:0,iv_load_policy:3},
-        events:{
-          onReady:function(){ ready=true; try{player.setVolume(100);}catch(e){} if(want) play();
-            // loop seamlessly: jump back to the start just before the song ends
-            setInterval(function(){ try{ if(!want) return; var d=player.getDuration(), t=player.getCurrentTime(); if(d>0 && d-t<0.8){ player.seekTo(0,true); player.playVideo(); } }catch(e){} },400);
-          },
-          onStateChange:function(e){ if(e.data===0){ try{player.seekTo(0,true);player.playVideo();}catch(err){} return; } playing=(e.data===1||e.data===3&&want); ui(); },
-          onError:function(){ failed=true; btn.style.display='none'; }
-        }});
-    };
-    var tag=document.createElement('script'); tag.src='https://www.youtube.com/iframe_api'; tag.async=true;
-    tag.onerror=function(){ btn.style.display='none'; };
-    document.head.appendChild(tag);
-    btn.addEventListener('click',function(){ if(playing||want&&!ready) pause(); else play(); });
+    function pause(){ want=false; try{audio.pause();}catch(e){} playing=false; ui(); }
+    audio.addEventListener('playing',function(){ playing=true; ui(); });
+    audio.addEventListener('pause',function(){ playing=false; ui(); });
+    audio.addEventListener('ended',function(){ if(want){ audio.currentTime=0; play(); } });
+    audio.addEventListener('error',function(){ failed=true; btn.style.display='none'; });
+    btn.addEventListener('click',function(){ if(playing) pause(); else play(); });
     document.addEventListener('visibilitychange',function(){
-      if(document.hidden){ resumeOnShow=playing; if(playing&&player){try{player.pauseVideo();}catch(e){}} }
+      if(document.hidden){ resumeOnShow=playing; if(playing){ try{audio.pause();}catch(e){} } }
       else if(resumeOnShow){ play(); }
     });
     /* friendly pop-up hints beside the music button, shown at random */
