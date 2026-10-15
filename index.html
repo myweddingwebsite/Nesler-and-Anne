@@ -10,7 +10,7 @@
 <meta property="og:description" content="You are invited to our wedding at Viridis Countryside Garden, Amadeo, Cavite.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Nesler &amp; Anne">
-<!-- Link-preview thumbnail: upload og-thumbnail.jpg to this exact ImageKit path (apps ignore base64 here) -->
+
 <meta property="og:image" content="https://ik.imagekit.io/ainmsoyhi/Nesler%20and%20Anne/og-thumbnail.jpg">
 <meta property="og:image:secure_url" content="https://ik.imagekit.io/ainmsoyhi/Nesler%20and%20Anne/og-thumbnail.jpg">
 <meta property="og:image:type" content="image/jpeg">
@@ -129,9 +129,7 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .intro-bottom .to{font-family:var(--serif);font-style:italic;font-size:15px;opacity:.8;margin-top:8px}
 @keyframes breathe{0%,100%{opacity:.45}50%{opacity:1}}
 
-/* ---- opening sequence is driven by JS (Web Animations) for frame-perfect smoothness ----
-   seal lifts → flap opens → card slides out → flap closes & envelope drops away
-   → card (a miniature of the hero) settles centre-screen → it grows into the real hero */
+
 #intro.open .seal .ring{animation:none;opacity:0}
 #intro.open .env{animation-play-state:paused}
 #intro.open .env-shadow{animation-play-state:paused}
@@ -139,7 +137,7 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 #intro.open .intro-bottom{opacity:0;transform:translateY(14px)}
 #intro.open .intro-bottom .tap{animation:none}
 .env-flap,.card,.env-back,.env-front,.seal{will-change:transform,opacity}
-/* the hero is lifted above the intro while it "grows out" of the card */
+
 .hero.morph{position:relative;z-index:120}
 .hero.morph .reveal{transition:none!important;transition-delay:0s!important}
 
@@ -147,7 +145,7 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
   box-shadow:0 0 6px 1px rgba(232,207,143,.8);opacity:0;animation:fall linear infinite;z-index:1}
 @keyframes fall{0%{transform:translate3d(0,-12px,0);opacity:0}6%{opacity:1}85%{opacity:.85}100%{transform:translate3d(var(--dx,0px),105vh,0);opacity:0}}
 
-/* ---- shimmering gold names ---- */
+
 .shine{
   background-image:linear-gradient(105deg,transparent 0%,transparent 40%,rgba(255,250,230,.95) 48%,rgba(255,255,255,1) 50%,rgba(255,250,230,.95) 52%,transparent 60%,transparent 100%),var(--gold-grad)!important;
   background-size:250% 100%,100% 100%!important;background-repeat:no-repeat!important;
@@ -155,7 +153,7 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
   animation:shine 9s ease-in-out infinite}
 @keyframes shine{0%{background-position:160% 0,0 0}60%,100%{background-position:-60% 0,0 0}}
 .names.shine .amp{-webkit-text-fill-color:transparent}
-/* ============ NAV ============ */
+
 .topbar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
   padding:12px 16px;padding-top:max(12px,env(safe-area-inset-top));transition:background .4s, box-shadow .4s}
 .topbar.solid{background:rgba(78,10,21,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 2px 14px rgba(0,0,0,.25)}
@@ -172,7 +170,7 @@ button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
 .menu .close{position:absolute;top:max(14px,env(safe-area-inset-top));right:16px;font-size:30px;color:var(--gold-light);width:44px;height:44px}
 .menu .m-mono{font-family:var(--script);font-size:48px;color:var(--gold);margin-bottom:14px}
 
-/* ============ SHARED ============ */
+
 section{position:relative;padding:84px 22px}
 .wrap{max-width:560px;margin:0 auto}
 .dark{background:var(--wine-600);color:var(--gold-pale)}
@@ -207,7 +205,7 @@ h2{font-family:var(--script);font-weight:400;font-size:52px;line-height:1.2;text
 .reveal{opacity:0;transform:translateY(26px);transition:opacity 1s ease, transform 1s cubic-bezier(.22,1,.36,1)}
 .reveal.in{opacity:1;transform:none}
 
-/* ============ HERO ============ */
+
 .hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
   padding:110px 22px 70px;color:var(--gold-pale);overflow:hidden;
   background:
@@ -228,13 +226,13 @@ h2{font-family:var(--script);font-weight:400;font-size:52px;line-height:1.2;text
 .date-row .side{font-size:12px;letter-spacing:.3em;border-top:1px solid rgba(201,162,75,.6);border-bottom:1px solid rgba(201,162,75,.6);padding:6px 4px;width:92px}
 .date-row .mid{font-family:var(--serif);font-size:62px;line-height:1;color:var(--gold-light)}
 .date-row .mid small{display:block;font-family:var(--caps);font-size:12px;letter-spacing:.3em;color:var(--gold);margin-bottom:4px}
-/* keep "20" on the same centre line as SUNDAY / 3:00 PM — DECEMBER floats above it */
+
 .date-row{margin-top:46px}
 .date-row + div{margin-top:20px!important}
 .date-row .mid{position:relative}
 .date-row .mid small{position:absolute;left:50%;bottom:100%;transform:translateX(-50%);white-space:nowrap;line-height:1.2;margin:0 0 calc(10px - var(--ov,0px));padding-left:.3em;
   text-shadow:none!important;-webkit-text-stroke:0;font-weight:400;letter-spacing:.32em}
-/* sides stretch to the measured height of the "20" digits (set by JS as --dh) */
+
 .date-row{align-items:center}
 .date-row .side{box-sizing:border-box;display:flex;align-items:center;justify-content:center;padding:0 4px;height:var(--dh,auto)}
 .hero .venue{font-style:italic;font-size:18px;margin-top:20px;color:rgba(244,230,194,.85)}
@@ -244,7 +242,7 @@ h2{font-family:var(--script);font-weight:400;font-size:52px;line-height:1.2;text
 .scroll-cue i{width:1px;height:34px;background:linear-gradient(var(--gold),transparent);animation:drip 2s ease-in-out infinite}
 @keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 
-/* ============ COUNTDOWN ============ */
+
 .count{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:8px 0 30px}
 .count div{background:var(--ivory);border:1px solid rgba(201,162,75,.45);border-radius:10px;padding:16px 4px 12px;text-align:center;position:relative}
 .count div::before{content:"";position:absolute;inset:4px;border:1px solid rgba(201,162,75,.2);border-radius:7px}
@@ -253,7 +251,7 @@ h2{font-family:var(--script);font-weight:400;font-size:52px;line-height:1.2;text
 .verse{text-align:center;font-style:italic;font-size:20px;color:var(--wine-500);margin:0 auto 26px;max-width:440px}
 .verse cite{display:block;font-style:normal;font-family:var(--caps);font-size:11px;letter-spacing:.3em;color:var(--gold-dark);margin-top:8px}
 
-/* ============ DETAILS ============ */
+
 .dcard{background:rgba(255,255,255,.04);border:1px solid rgba(201,162,75,.45);border-radius:14px;padding:30px 22px;text-align:center;margin-bottom:16px;position:relative}
 .dcard .ico{width:48px;height:48px;margin:0 auto 12px;color:var(--gold)}
 .dcard h3{font-family:var(--caps);font-weight:500;font-size:14px;letter-spacing:.32em;color:var(--gold);margin-bottom:8px}
@@ -264,7 +262,6 @@ h2{font-family:var(--script);font-weight:400;font-size:52px;line-height:1.2;text
 .map iframe{width:100%;height:100%;border:0;filter:sepia(.25) saturate(.9)}
 .btn-row{display:flex;flex-direction:column;gap:12px;align-items:stretch}
 
-/* ============ TIMELINE ============ */
 .tl{position:relative;padding-left:0;margin-top:10px}
 .tl::before{content:"";position:absolute;left:84px;top:8px;bottom:8px;width:1px;background:linear-gradient(var(--gold),rgba(201,162,75,.2))}
 .tl li{list-style:none;display:grid;grid-template-columns:70px 1fr;gap:30px;align-items:center;padding:14px 0;position:relative}
@@ -274,7 +271,7 @@ h2{font-family:var(--script);font-weight:400;font-size:52px;line-height:1.2;text
 .tl .a{font-size:20px;color:var(--ink);line-height:1.3}
 .tl .a span{display:block;font-size:14px;font-style:italic;color:var(--muted)}
 
-/* ============ ENTOURAGE ============ */
+
 .ent-group{text-align:center;margin-bottom:34px}
 .ent-group h3{font-family:var(--caps);font-weight:500;font-size:12px;letter-spacing:.34em;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;justify-content:center;gap:10px}
 .ent-group h3::before,.ent-group h3::after{content:"";width:22px;height:1px;background:var(--gold);opacity:.6}
@@ -291,7 +288,6 @@ h2{font-family:var(--script);font-weight:400;font-size:52px;line-height:1.2;text
 .ent-cols .ent-group h3::before,.ent-cols .ent-group h3::after{display:none}
 .ent-cols .ent-group{margin-bottom:28px}
 .pair{margin-bottom:10px}
-/* principal sponsors: godfather left | godmother right, one row per pair */
 .ps-grid{display:grid;gap:12px;margin-top:4px}
 .ps-row{display:grid;grid-template-columns:1fr 1fr;align-items:center;column-gap:22px;position:relative;
   font-size:clamp(14.5px,4.4vw,19px);line-height:1.3;color:var(--gold-pale)}
@@ -305,7 +301,6 @@ h2{font-family:var(--script);font-weight:400;font-size:52px;line-height:1.2;text
 .parents{display:grid;grid-template-columns:1fr;gap:6px}
 .divider{height:1px;margin:10px auto 34px;width:60%;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.6}
 
-/* ============ ATTIRE ============ */
 .attire{background:#fff;border-radius:16px;padding:28px 22px;margin-bottom:16px;border:1px solid rgba(201,162,75,.4);box-shadow:0 10px 30px rgba(90,11,24,.06);text-align:center}
 .attire h3{font-family:var(--caps);font-weight:500;font-size:13px;letter-spacing:.3em;color:var(--wine-600);margin-bottom:6px}
 .attire .tag{font-style:italic;color:var(--gold-dark);font-size:17px;margin-bottom:12px}
@@ -318,7 +313,6 @@ h2{font-family:var(--script);font-weight:400;font-size:52px;line-height:1.2;text
 .sw-names{font-family:var(--sans);font-size:11px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
 .note{display:flex;gap:12px;align-items:flex-start;background:rgba(114,20,38,.06);border-left:2px solid var(--wine-500);padding:14px 16px;border-radius:0 10px 10px 0;font-size:16px;color:var(--wine-600);margin-top:8px}
 
-/* ============ REMINDERS ============ */
 .reminders{background:var(--ivory);border-top:1px solid rgba(201,162,75,.35)}
 .rem-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
 .rem{background:#fff;border:1px solid rgba(201,162,75,.45);border-radius:16px;padding:22px 12px 20px;text-align:center;position:relative;box-shadow:0 10px 26px rgba(90,11,24,.06)}
@@ -329,7 +323,6 @@ h2{font-family:var(--script);font-weight:400;font-size:52px;line-height:1.2;text
 .rem h3{font-family:var(--caps);font-weight:500;font-size:11.5px;letter-spacing:.18em;color:var(--wine-600);line-height:1.45;margin-bottom:8px}
 .rem p{font-size:15px;line-height:1.45;color:var(--muted)}
 @media (min-width:720px){.rem{padding:28px 20px}.rem h3{font-size:13px}.rem p{font-size:16px}}
-/* ============ GIFTS ============ */
 .gift{background:var(--ivory);color:var(--ink);border-radius:18px;padding:26px 22px 24px;text-align:center;margin-bottom:18px;position:relative;box-shadow:0 14px 34px rgba(0,0,0,.25)}
 .gift::before{content:"";position:absolute;inset:6px;border:1px solid rgba(201,162,75,.6);border-radius:13px;pointer-events:none}
 .gift .lbl{font-family:var(--caps);font-size:11px;letter-spacing:.32em;color:var(--gold-dark)}
@@ -350,16 +343,14 @@ h2{font-family:var(--script);font-weight:400;font-size:52px;line-height:1.2;text
 .qr-view img{width:min(80vw,340px);background:#fff;padding:14px;border-radius:14px;-webkit-touch-callout:default;user-select:auto}
 .qr-view p{font-family:var(--sans);font-size:15px;color:var(--gold-pale);text-align:center;max-width:300px}
 .qr-view button{font-family:var(--caps);font-size:11px;letter-spacing:.25em;color:var(--gold-light);border:1px solid var(--gold);border-radius:999px;padding:12px 26px}
-/* ============ RSVP ============ */
 .rsvp-card{background:#fff;border-radius:20px;padding:40px 24px;text-align:center;border:1px solid rgba(201,162,75,.5);box-shadow:0 16px 40px rgba(90,11,24,.08);position:relative}
 .rsvp-card::before{content:"";position:absolute;inset:8px;border:1px solid rgba(201,162,75,.3);border-radius:14px;pointer-events:none}
 .deadline{display:inline-block;margin:16px 0 24px;padding:10px 20px;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);font-family:var(--caps);letter-spacing:.24em;font-size:13px;color:var(--wine-600)}
 .deadline small{display:block;font-size:10px;color:var(--gold-dark);letter-spacing:.3em;margin-bottom:2px}
 
-/* ============ PHOTOS ============ */
 .cam{width:64px;height:64px;margin:0 auto 14px;color:var(--gold)}
 
-/* ============ FAQ ============ */
+
 .faq details{border-bottom:1px solid rgba(201,162,75,.45)}
 .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:20px 2px;font-size:20px;font-weight:500;color:var(--wine-600);line-height:1.3}
 .faq summary::-webkit-details-marker{display:none}
@@ -368,7 +359,6 @@ h2{font-family:var(--script);font-weight:400;font-size:52px;line-height:1.2;text
 .faq .ans{padding:0 2px 20px;font-size:17px;color:var(--muted)}
 .faq .ans a{color:var(--wine-500)}
 
-/* ============ FOOTER ============ */
 footer{background:var(--wine-900);color:var(--gold-pale);text-align:center;padding:70px 22px calc(40px + env(safe-area-inset-bottom))}
 footer .names-f{font-family:var(--script);font-size:58px;line-height:1.25;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent;padding:0 .3em .08em;display:inline-block}
 footer .d{font-family:var(--caps);letter-spacing:.34em;font-size:12px;color:var(--gold);margin-top:6px}
@@ -377,7 +367,6 @@ footer .credit{margin-top:44px;padding-top:22px;border-top:1px solid rgba(201,16
 footer .credit a{text-decoration:none;color:var(--gold-light)}
 
 
-/* ============ DRESS CODE (illustrated) ============ */
 .dc-group{font-family:var(--caps);font-weight:500;font-size:13px;letter-spacing:.32em;color:var(--wine-600);text-align:center;
   margin:34px 0 16px;display:flex;align-items:center;justify-content:center;gap:12px}
 .dc-group::before,.dc-group::after{content:"";width:28px;height:1px;background:var(--gold);opacity:.7}
@@ -400,7 +389,6 @@ footer .credit a{text-decoration:none;color:var(--gold-light)}
 @media (max-width:359px){.dc-img img{height:150px}.dc-txt h4{font-size:30px}}
 
 
-/* guests + bride reminder */
 .dc-guests{background:#fff;border-radius:16px;padding:16px 14px 20px;border:1px solid rgba(201,162,75,.4);box-shadow:var(--depth,0 10px 30px rgba(90,11,24,.08));text-align:center;margin-bottom:14px}
 .dc-guests img{display:block;width:100%;height:auto;mix-blend-mode:multiply;border-radius:8px}
 .dc-gtext{font-size:18px;line-height:1.45;color:var(--ink);margin:14px 4px 4px}
@@ -430,7 +418,6 @@ footer .credit a{text-decoration:none;color:var(--gold-light)}
 @media (prefers-reduced-motion:reduce){.bride *{animation:none!important}}
 
 
-/* ---- program icon animations ---- */
 .tl-ic svg{overflow:visible}
 .tl-ic svg *{transform-box:fill-box}
 .tl li:nth-child(1) .tl-ic circle{animation:tlTw 2.4s ease-in-out infinite;transform-origin:center}
@@ -453,7 +440,6 @@ footer .credit a{text-decoration:none;color:var(--gold-light)}
 @media (prefers-reduced-motion:reduce){.tl-ic svg,.tl-ic svg *,.orn svg{animation:none!important}}
 
 
-/* ---- subtle motion: reminder icons ---- */
 .rem .art svg{animation:remFloat 4s ease-in-out infinite}
 .rem .art svg *{transform-box:view-box}
 .rem:nth-child(2) .art svg{animation-delay:-1s}.rem:nth-child(3) .art svg{animation-delay:-2s}.rem:nth-child(4) .art svg{animation-delay:-3s}
@@ -478,7 +464,6 @@ footer .credit a{text-decoration:none;color:var(--gold-light)}
 @keyframes remSway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
 @keyframes remPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 
-/* ---- subtle motion: dress code illustrations ---- */
 .dc-img{animation:dcBreath 5s ease-in-out infinite;transform-origin:50% 100%}
 .dc-row:nth-of-type(2n) .dc-img{animation-delay:-2.5s}
 .dc-r .dc-img{animation-name:dcBreathR}
@@ -489,7 +474,6 @@ footer .credit a{text-decoration:none;color:var(--gold-light)}
 @media (prefers-reduced-motion:reduce){.rem .art svg,.rem .art svg *,.dc-img,.dc-guests img{animation:none!important}}
 
 
-/* ---- Capture the Moment: camera snap ---- */
 .cam .cam-body{animation:camBob 3.2s ease-in-out infinite;transform-origin:32px 36px;transform-box:view-box}
 .cam .cam-lens{animation:camFocus 3.2s ease-in-out infinite;transform-origin:32px 36px;transform-box:view-box}
 .cam .cam-btn{animation:camPress 3.2s ease-in-out infinite}
@@ -500,7 +484,6 @@ footer .credit a{text-decoration:none;color:var(--gold-light)}
 @keyframes camFlash{0%,52%{opacity:0;transform:scale(.4)}56%{opacity:1;transform:scale(1.15)}72%{opacity:0;transform:scale(1.5)}100%{opacity:0}}
 @media (prefers-reduced-motion:reduce){.cam *{animation:none!important}.cam .cam-flash{opacity:0}}
 
-/* ============ GALLERY ============ */
 .wrap.wide{max-width:900px}
 .gallery{column-count:2;column-gap:10px;margin-top:6px}
 @media (min-width:720px){.gallery{column-count:3;column-gap:14px}}
@@ -516,7 +499,6 @@ footer .credit a{text-decoration:none;color:var(--gold-light)}
 .g-item:focus-visible{outline:2px solid var(--gold-light);outline-offset:2px}
 .g-hint{text-align:center;font-family:var(--caps);font-size:10px;letter-spacing:.3em;color:var(--gold);opacity:.8;margin-top:14px}
 
-/* ---- Lightbox ---- */
 .lb{position:fixed;inset:0;z-index:200;background:rgba(20,2,6,.96);display:flex;align-items:center;justify-content:center;
   opacity:0;transition:opacity .3s ease;touch-action:pan-y}
 .lb[hidden]{display:none}
@@ -534,7 +516,6 @@ footer .credit a{text-decoration:none;color:var(--gold-light)}
 .lb-count{position:absolute;bottom:calc(20px + env(safe-area-inset-bottom));left:0;right:0;text-align:center;font-family:var(--caps);font-size:12px;letter-spacing:.3em;color:var(--gold-light)}
 body.lb-open{overflow:hidden}
 
-/* ============ MUSIC CONTROL (replaces back-to-top) ============ */
 .music{position:fixed;right:16px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:40;width:50px;height:50px;border-radius:50%;padding:0;
   background:radial-gradient(circle at 35% 30%,#7A1428,#4E0A15 75%);border:1px solid var(--gold);color:var(--gold-light);
   display:grid;place-items:center;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,241,201,.15);
@@ -560,7 +541,6 @@ body.lb-open{overflow:hidden}
   box-shadow:1px -1px 0 rgba(201,162,75,.6)}
 .music-tip.show{opacity:1;visibility:visible;transform:none}
 
-/* ============ LARGER SCREENS ============ */
 @media (min-width:720px){
   section{padding:110px 32px}
   h2{font-size:64px}
@@ -571,23 +551,18 @@ body.lb-open{overflow:hidden}
   *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
   .reveal{opacity:1;transform:none}
 }
-/* ---- shimmering section titles ---- */
 h2{background-image:linear-gradient(105deg,transparent 0%,transparent 40%,rgba(255,236,205,.85) 48%,rgba(255,248,235,.95) 50%,rgba(255,236,205,.85) 52%,transparent 60%,transparent 100%),linear-gradient(120deg,#4E0A15,#8E1F34 50%,#5A0B18);
   background-size:250% 100%,100% 100%;background-repeat:no-repeat;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
   padding:.05em .25em .1em;animation:shine 10s ease-in-out infinite}
 .dark h2,.dark-2 h2{background-image:linear-gradient(105deg,transparent 0%,transparent 40%,rgba(255,250,230,.95) 48%,#fff 50%,rgba(255,250,230,.95) 52%,transparent 60%,transparent 100%),var(--gold-grad)}
 
-/* =====================================================================
-   3D ELEGANCE LAYER
-   ===================================================================== */
+
 :root{--depth:0 1px 0 rgba(255,255,255,.6) inset,0 2px 3px rgba(58,18,24,.06),0 14px 28px -10px rgba(90,11,24,.22),0 34px 60px -30px rgba(46,5,12,.35)}
 
-/* ---------- 3D scroll reveal: cards flip up from the page ---------- */
 .reveal{transform:perspective(1000px) translate3d(0,46px,-40px) rotateX(16deg);transform-origin:50% 100%;
   transition:opacity 1.1s ease, transform 1.2s cubic-bezier(.2,.8,.2,1)}
 .reveal.in{transform:none}
 
-/* ---------- HERO: layered 3D stage ---------- */
 .hero{isolation:isolate}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:radial-gradient(ellipse 70% 45% at 50% 108%,rgba(201,162,75,.22),transparent 70%)}
@@ -868,6 +843,7 @@ footer .names-f{filter:drop-shadow(0 1px 0 #7a5a1e) drop-shadow(0 2px 0 #4f380f)
         <div class="ps-row"><span class="ps-m">Mr. Martin Zapanta</span><span class="ps-w">Mrs. Juli Cris Non</span></div>
         <div class="ps-row"><span class="ps-m">Mr. Philip Ermitanio</span><span class="ps-w">Mrs. Mhalen Ermitanio</span></div>
         <div class="ps-row"><span class="ps-m">Mr. Johnel Diokno</span><span class="ps-w">Mrs. Laarni Agustin</span></div>
+        <div class="ps-row"><span class="ps-m">Mr. Demetrio Dela Cruz</span><span class="ps-w">Mrs. Maribel Dela Cruz</span></div>
       </div>
     </div>
 
